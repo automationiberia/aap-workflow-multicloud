@@ -11,11 +11,19 @@
     - controller_hosts.yaml
     - controller_templates.yaml
     - controller_workflows.yaml
-  vars:
-    controller_hostname: ""
-    controller_username: ""
-    controller_password: ""
-    controller_validate_certs: false
+  module_defaults:
+    ansible.controller.organization: &common
+      controller_host: "aap.host.domain"
+      controller_username: "admin"
+      controller_password: "redhat00"
+      validate_certs: false
+    ansible.controller.credential: *common
+    ansible.controller.project: *common
+    ansible.controller.inventory: *common
+    ansible.controller.instance_group: *common
+    ansible.controller.host: *common
+    ansible.controller.job_template: *common
+    ansible.controller.workflow_job_template: *common
   tasks:
     - name: "Deploy the organizations"
       ansible.controller.organization: "{{ organization_item }}"
@@ -54,7 +62,7 @@
         loop_var: host_item
 
     - name: "Deploy the job templates"
-      ansible.controller.inventory: "{{ job_template_item }}"
+      ansible.controller.job_template: "{{ job_template_item }}"
       loop: "{{ controller_templates }}"
       loop_control:
         loop_var: job_template_item
