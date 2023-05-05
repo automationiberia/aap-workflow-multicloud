@@ -5,9 +5,9 @@ controller_projects:
     organization: "{{ orgs }}"
     scm_type: git
     scm_url: "git@github.com:automationiberia/aap-workflow-multicloud.git"
-    scm_credential: "{{ orgs }} {{ env }} Gitlab Credential"
-    scm_branch: "{{ casc_gitlab_scm_branch | default(env) }}"
-    scm_credential: "{{ orgs }} {{ env }} Gitlab Credential"
+    scm_credential: "{{ orgs }} Gitlab Credential"
+    scm_branch: "main"
+    scm_credential: "{{ orgs }} Gitlab Credential"
     scm_clean: false
     scm_delete_on_update: false
     scm_update_on_launch: false

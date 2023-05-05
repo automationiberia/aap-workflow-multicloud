@@ -9,8 +9,13 @@
     - controller_inventories.yaml
     - controller_instance_groups.yaml
     - controller_hosts.yaml
-    - controller_job_templates.yaml
+    - controller_templates.yaml
     - controller_workflows.yaml
+  vars:
+    controller_hostname: ""
+    controller_username: ""
+    controller_password: ""
+    controller_validate_certs: false
   tasks:
     - name: "Deploy the organizations"
       ansible.controller.organization: "{{ organization_item }}"
@@ -50,7 +55,7 @@
 
     - name: "Deploy the job templates"
       ansible.controller.inventory: "{{ job_template_item }}"
-      loop: "{{ controller_job_templates }}"
+      loop: "{{ controller_templates }}"
       loop_control:
         loop_var: job_template_item
 
