@@ -1,10 +1,10 @@
 ---
 controller_projects:
-  - name: "{{ orgs }} CasC_Data"
-    description: "Project to include the vars values of the {{ orgs }} Org"
+  - name: "{{ orgs }} Demo Project"
+    description: "Demo Project"
     organization: "{{ orgs }}"
     scm_type: git
-    scm_url: "git@gitlab.iam.lab:automationiberia/aap-cac/NewOrg.git"
+    scm_url: "git@github.com:automationiberia/aap-workflow-multicloud.git"
     scm_credential: "{{ orgs }} {{ env }} Gitlab Credential"
     scm_branch: "{{ casc_gitlab_scm_branch | default(env) }}"
     scm_credential: "{{ orgs }} {{ env }} Gitlab Credential"

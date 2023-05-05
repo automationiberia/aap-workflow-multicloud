@@ -1,3 +1,14 @@
 ---
-controller_instance_groups: []
+controller_instance_groups:
+  - name: "OCP"
+    validate_certs: false
+    is_container_group: true
+    pod_spec_override: ""
+    instances: []
+
+  - name: "EKS"
+    validate_certs: false
+    is_container_group: true
+    pod_spec_override: ""
+    instances: []
 ...

@@ -1,9 +1,9 @@
 ---
 controller_organizations:
-  - name: "NewOrg"
-    description: "Organization NewOrg"
+  - name: "{{ orgs }}"
+    description: "Organization {{ orgs }}"
     galaxy_credentials:
-      - "{{ orgs }} {{ env }} Automation Hub Community Repository"
-      - "{{ orgs }} {{ env }} Automation Hub Published Repository"
-      - "{{ orgs }} {{ env }} Automation Hub RH Certified Repository"
+      - "{{ orgs }} Automation Hub Community Repository"
+      - "{{ orgs }} Automation Hub Published Repository"
+      - "{{ orgs }} Automation Hub RH Certified Repository"
 ...

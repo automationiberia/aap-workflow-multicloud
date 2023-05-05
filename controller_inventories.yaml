@@ -1,6 +1,10 @@
 ---
 controller_inventories:
-  - name: "{{ orgs }} Localhost"
-    description: "Inventory for the Localhost"
+  - name: "{{ orgs }} Demo Inventory OCP"
+    description: "Demo Inventory OCP"
+    organization: "{{ orgs }}"
+
+  - name: "{{ orgs }} Demo Inventory EKS"
+    description: "Demo Inventory EKS"
     organization: "{{ orgs }}"
 ...
