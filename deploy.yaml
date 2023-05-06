@@ -2,15 +2,8 @@
 - hosts: controller
   connection: local
   gather_facts: false
-  vars_files:
-    - controller_organizations.yaml
-    - controller_credentials.yaml
-    - controller_projects.yaml
-    - controller_inventories.yaml
-    - controller_instance_groups.yaml
-    - controller_hosts.yaml
-    - controller_templates.yaml
-    - controller_workflows.yaml
+  vars:
+    assign_galaxy_credentials_to_org: false
   module_defaults:
     ansible.controller.organization: &common
       controller_host: "{{ vault_controller_hostname }}"
@@ -22,50 +15,66 @@
     ansible.controller.inventory: *common
     ansible.controller.instance_group: *common
     ansible.controller.host: *common
+    ansible.controller.execution_environment: *common
     ansible.controller.job_template: *common
     ansible.controller.workflow_job_template: *common
   tasks:
-    - name: "Deploy the organizations"
-      ansible.controller.organization: "{{ organization_item }}"
-      loop: "{{ controller_organizations }}"
-      loop_control:
-        loop_var: organization_item
-
-    - name: "Deploy the credentials"
-      ansible.controller.credential: "{{ credential_item }}"
-      loop: "{{ controller_credentials }}"
-      loop_control:
-        loop_var: credential_item
-
-    - name: "Deploy the projects"
-      ansible.controller.project: "{{ project_item }}"
-      loop: "{{ controller_projects }}"
-      loop_control:
-        loop_var: project_item
-
-    - name: "Deploy the inventories"
-      ansible.controller.inventory: "{{ inventory_item }}"
-      loop: "{{ controller_inventories }}"
-      loop_control:
-        loop_var: inventory_item
-
+#    - name: "Deploy the organizations"
+#      ansible.controller.organization:
+#        name: "{{ organization_item.name }}"
+#        description: "{{ organization_item.description }}"
+#      loop: "{{ controller_organizations }}"
+#      loop_control:
+#        loop_var: organization_item
+#
+#
+#    - name: "Deploy the credentials"
+#      ansible.controller.credential: "{{ credential_item }}"
+#      loop: "{{ controller_credentials }}"
+#      loop_control:
+#        loop_var: credential_item
+#
+#    - name: "Add galaxy credentials to organizations"
+#      ansible.controller.organization: "{{ organization_item }}"
+#      loop: "{{ controller_organizations }}"
+#      loop_control:
+#        loop_var: organization_item
+#
+#    - name: "Deploy the projects"
+#      ansible.controller.project: "{{ project_item }}"
+#      loop: "{{ controller_projects }}"
+#      loop_control:
+#        loop_var: project_item
+#
+#    - name: "Deploy the inventories"
+#      ansible.controller.inventory: "{{ inventory_item }}"
+#      loop: "{{ controller_inventories }}"
+#      loop_control:
+#        loop_var: inventory_item
+#
     - name: "Deploy the instance groups"
       ansible.controller.instance_group: "{{ instance_group_item }}"
       loop: "{{ controller_instance_groups }}"
       loop_control:
         loop_var: instance_group_item
-
-    - name: "Deploy the hosts"
-      ansible.controller.host: "{{ host_item }}"
-      loop: "{{ controller_hosts }}"
-      loop_control:
-        loop_var: host_item
-
-    - name: "Deploy the job templates"
-      ansible.controller.job_template: "{{ job_template_item }}"
-      loop: "{{ controller_templates }}"
-      loop_control:
-        loop_var: job_template_item
+#
+#    - name: "Deploy the hosts"
+#      ansible.controller.host: "{{ host_item }}"
+#      loop: "{{ controller_hosts }}"
+#      loop_control:
+#        loop_var: host_item
+#
+#    - name: "Deploy the execution environments"
+#      ansible.controller.execution_environment: "{{ execution_environments_item }}"
+#      loop: "{{ controller_execution_environments }}"
+#      loop_control:
+#        loop_var: execution_environments_item
+#
+#    - name: "Deploy the job templates"
+#      ansible.controller.job_template: "{{ job_template_item }}"
+#      loop: "{{ controller_templates }}"
+#      loop_control:
+#        loop_var: job_template_item
 
     - name: "Deploy the workflows"
       ansible.controller.workflow_job_template: "{{ workflow_item }}"

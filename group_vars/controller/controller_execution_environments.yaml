@@ -1,0 +1,8 @@
+---
+controller_execution_environments:
+  - name: "ee-ocp-aap-iac-casc"
+    image: pah.hlwjb.sandbox691.opentlc.com/ee-ocp-aap-iac-casc:latest
+    pull: always
+    credential: "{{ orgs }} Automation Private Hub Container Registry"
+    validate_certs: false
+...

@@ -2,13 +2,51 @@
 controller_instance_groups:
   - name: "OCP"
     validate_certs: false
+    credential: "{{ orgs }} Demo Credential OCP"
     is_container_group: true
-    pod_spec_override: ""
+    pod_spec_override: |
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        namespace: aap-containergroups
+      spec:
+        serviceAccountName: sa-cg-aap-containergroups
+        automountServiceAccountToken: false
+        containers:
+          - image: pah.hlwjb.sandbox691.opentlc.com/ee-supported-rhel8:latest
+            name: worker
+            args:
+              - ansible-runner
+              - worker
+              - '--private-data-dir=/runner'
+            resources:
+              requests:
+                cpu: 250m
+                memory: 100Mi
     instances: []
 
   - name: "EKS"
     validate_certs: false
+    credential: "{{ orgs }} Demo Credential EKS"
     is_container_group: true
-    pod_spec_override: ""
+    pod_spec_override: |
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        namespace: aap-containergroups
+      spec:
+        serviceAccountName: sa-cg-aap-containergroups
+        automountServiceAccountToken: false
+        containers:
+          - image: pah.hlwjb.sandbox691.opentlc.com/ee-supported-rhel8:latest
+            name: worker
+            args:
+              - ansible-runner
+              - worker
+              - '--private-data-dir=/runner'
+            resources:
+              requests:
+                cpu: 250m
+                memory: 100Mi "
     instances: []
 ...

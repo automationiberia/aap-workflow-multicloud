@@ -3,7 +3,7 @@ controller_templates:
   - name: "{{ orgs }} Demo Job Template"
     description: "Demo Job Template"
     organization: "{{ orgs }}"
-    project: "{{ orgs }} CasC_Data"
+    project: "{{ orgs }} Demo Project"
     playbook: "get_k8s_cluster_info.yaml"
     job_type: run
     fact_caching_enabled: false
@@ -13,5 +13,5 @@ controller_templates:
     extra_vars:
       ansible_python_interpreter: /usr/bin/python3
       ansible_async_dir: /home/runner/.ansible_async/
-    execution_environment: "ee-casc"
+    execution_environment: "ee-ocp-aap-iac-casc"
 ...

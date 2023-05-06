@@ -6,4 +6,12 @@ ssl_ca_cert: "{{ vault_ssl_ca_cert }}"
 
 ## Container Groups
 aap_cg_namespace: aap-containergroups
+
+## Controller
+orgs:  aap-multicloud
+controller_host: "{{ vault_controller_hostname }}"
+controller_username: "{{ vault_controller_username }}"
+controller_password: "{{ vault_controller_password }}"
+controller_validate_certs: "{{ vault_controller_validate_certs }}"
+
 ...

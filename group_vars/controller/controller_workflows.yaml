@@ -8,33 +8,36 @@ controller_workflows:
     organization: "{{ orgs }}"
     survey_enabled: false
     survey_spec: {}
-    scheme:
-      - identifier: "LAUNCH_CI_{{ orgs }}_OCP"
+    workflow_nodes:
+      - identifier: "K8S_OCP"
         unified_job_template:
           organization:
             name: "{{ orgs }}"
           name: "{{ orgs }} Demo Job Template"
           type: job_template
-        inventory: "{{ orgs }} Demo Inventory OCP"
-        credentials:
-          - name: "{{ orgs }} Demo Credential OCP"
-        related:
-          success_nodes: []
-          failure_nodes: []
-          always_nodes: []
-          credentials: []
-      - identifier: "LAUNCH_CI_{{ orgs }}_EKS"
-        unified_job_template:
+        inventory:
+          name: Demo Inventory
           organization:
-            name: "{{ orgs }}"
-          name: "{{ orgs }} Demo Job Template"
-          type: job_template
-        inventory: "{{ orgs }} Demo Inventory EKS"
-        credentials:
-          - name: "{{ orgs }} Demo Credential EKS"
+            name: Default
         related:
           success_nodes: []
           failure_nodes: []
           always_nodes: []
-          credentials: []
+          credentials:
+            - name: "{{ orgs }} Demo Credential OCP"
+#      - identifier: "K8S_EKS"
+#        unified_job_template:
+#          organization:
+#            name: "{{ orgs }}"
+#          name: "{{ orgs }} Demo Job Template"
+#          type: job_template
+#        inventory:
+#          name: "{{ orgs }} Demo Inventory EKS"
+#        credentials:
+#          - name: "{{ orgs }} Demo Credential EKS"
+#        related:
+#          success_nodes: []
+#          failure_nodes: []
+#          always_nodes: []
+#          credentials: []
 ...

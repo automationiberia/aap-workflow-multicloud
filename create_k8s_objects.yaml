@@ -28,7 +28,7 @@
           api_version: v1
           kind: ServiceAccount
           metadata:
-            name: "{{ aap_cg_namespace }}"
+            name: "sa-cg-{{ aap_cg_namespace }}"
             namespace: "{{ aap_cg_namespace }}"
             labels:
               containergroup-provider: "{{ k8s_flavor }}"
