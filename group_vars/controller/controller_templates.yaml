@@ -4,7 +4,7 @@ controller_templates:
     description: "Demo Job Template"
     organization: "{{ orgs }}"
     project: "{{ orgs }} CasC_Data"
-    playbook: "demo-playbook.yml"
+    playbook: "get_k8s_cluster_info.yaml"
     job_type: run
     fact_caching_enabled: false
     concurrent_jobs_enabled: true

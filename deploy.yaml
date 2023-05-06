@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: controller
   connection: local
   gather_facts: false
   vars_files:
@@ -13,10 +13,10 @@
     - controller_workflows.yaml
   module_defaults:
     ansible.controller.organization: &common
-      controller_host: "aap.host.domain"
-      controller_username: "admin"
-      controller_password: "redhat00"
-      validate_certs: false
+      controller_host: "{{ vault_controller_hostname }}"
+      controller_username: "{{ vault_controller_username }}"
+      controller_password: "{{ vault_controller_password }}"
+      validate_certs: "{{ vault_controller_validate_certs }}"
     ansible.controller.credential: *common
     ansible.controller.project: *common
     ansible.controller.inventory: *common

@@ -1,0 +1,15 @@
+---
+- hosts: k8s
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Get Cluster information
+      kubernetes.core.k8s_cluster_info:
+        api_key: "{{ bearer_token }}"
+        host: "{{ host }}"
+        validate_certs: "{{ ssl_ca_cert }}"
+      register: api_status
+
+    - name: Show k8s version
+      debug:
+        msg: "{{ api_status.version.server }}"

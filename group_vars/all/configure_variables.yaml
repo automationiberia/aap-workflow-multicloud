@@ -1,0 +1,9 @@
+---
+## k8s connection variables
+bearer_token: "{{ vault_bearer_token }}"
+host: "{{ vault_host }}"
+ssl_ca_cert: "{{ vault_ssl_ca_cert }}"
+
+## Container Groups
+aap_cg_namespace: aap-containergroups
+...

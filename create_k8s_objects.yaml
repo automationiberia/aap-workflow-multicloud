@@ -1,0 +1,34 @@
+---
+- hosts: k8s
+  connection: local
+  gather_facts: false
+  module_defaults:
+    group/k8s:
+      api_key: "{{ bearer_token }}"
+      host: "{{ host }}"
+      validate_certs: "{{ ssl_ca_cert }}"
+  tasks:
+    - name: Create AAP Container Group namespace
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          name: "{{ aap_cg_namespace }}"
+          api_version: v1
+          kind: Namespace
+          metadata:
+            name: "{{ aap_cg_namespace }}"
+            labels:
+              containergroup-provider: "{{ k8s_flavor }}"
+
+    - name: Create AAP Container Group SA
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          name: "sa-cg-{{ aap_cg_namespace }}"
+          api_version: v1
+          kind: ServiceAccount
+          metadata:
+            name: "{{ aap_cg_namespace }}"
+            namespace: "{{ aap_cg_namespace }}"
+            labels:
+              containergroup-provider: "{{ k8s_flavor }}"

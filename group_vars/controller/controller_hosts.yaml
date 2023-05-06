@@ -1,10 +1,10 @@
 ---
 controller_hosts:
-  - name: localhost
+  - name: ocp-instance-group
     description: localhost
     inventory: "{{ orgs }} Demo Inventory OCP"
 
-  - name: localhost
+  - name: eks-instance-group
     description: localhost
     inventory: "{{ orgs }} Demo Inventory EKS"
 ...

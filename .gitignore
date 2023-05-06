@@ -1,3 +1,4 @@
 id_rsa*
 *-artifact-*.json
 *.log
+collections
