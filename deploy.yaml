@@ -56,11 +56,11 @@
 #      loop_control:
 #        loop_var: inventory_item
 #
-    - name: "Deploy the instance groups"
-      ansible.controller.instance_group: "{{ instance_group_item }}"
-      loop: "{{ controller_instance_groups }}"
-      loop_control:
-        loop_var: instance_group_item
+#    - name: "Deploy the instance groups"
+#      ansible.controller.instance_group: "{{ instance_group_item }}"
+#      loop: "{{ controller_instance_groups }}"
+#      loop_control:
+#        loop_var: instance_group_item
 #
 #    - name: "Deploy the hosts"
 #      ansible.controller.host: "{{ host_item }}"
@@ -85,4 +85,10 @@
       loop: "{{ controller_workflows }}"
       loop_control:
         loop_var: workflow_item
+
+    - name: "Deploy the workflow nodes"
+      ansible.controller.workflow_job_template_node: "{{ node_item }}"
+      loop: "{{ controller_workflow_nodes }}"
+      loop_control:
+        loop_var: node_item
 ...
