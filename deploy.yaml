@@ -12,18 +12,23 @@
     - controller_templates.yaml
     - controller_workflows.yaml
   module_defaults:
-    ansible.controller.organization: &common
+    group/ansible.controller.controller:
       controller_host: "{{ vault_controller_hostname }}"
       controller_username: "{{ vault_controller_username }}"
       controller_password: "{{ vault_controller_password }}"
       validate_certs: "{{ vault_controller_validate_certs }}"
-    ansible.controller.credential: *common
-    ansible.controller.project: *common
-    ansible.controller.inventory: *common
-    ansible.controller.instance_group: *common
-    ansible.controller.host: *common
-    ansible.controller.job_template: *common
-    ansible.controller.workflow_job_template: *common
+    # ansible.controller.organization: &common
+    #   controller_host: "{{ vault_controller_hostname }}"
+    #   controller_username: "{{ vault_controller_username }}"
+    #   controller_password: "{{ vault_controller_password }}"
+    #   validate_certs: "{{ vault_controller_validate_certs }}"
+    # ansible.controller.credential: *common
+    # ansible.controller.project: *common
+    # ansible.controller.inventory: *common
+    # ansible.controller.instance_group: *common
+    # ansible.controller.host: *common
+    # ansible.controller.job_template: *common
+    # ansible.controller.workflow_job_template: *common
   tasks:
     - name: "Deploy the organizations"
       ansible.controller.organization: "{{ organization_item }}"
