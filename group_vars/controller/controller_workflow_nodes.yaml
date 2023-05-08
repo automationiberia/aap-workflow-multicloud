@@ -4,8 +4,10 @@ controller_workflow_nodes:
     workflow_job_template: "{{ orgs }} Demo Workflow"
     unified_job_template: "{{ orgs }} Demo Job Template"
     inventory: "{{ orgs }} Demo Inventory OCP"
+    credentials: "{{ orga }} Demo Credential OCP"
   - identifier: "K8S_EKS"
     workflow_job_template: "{{ orgs }} Demo Workflow"
     unified_job_template: "{{ orgs }} Demo Job Template"
     inventory: "{{ orgs }} Demo Inventory EKS"
+    credentials: "{{ orga }} Demo Credential EKS"
 ...
