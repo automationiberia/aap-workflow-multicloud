@@ -7,7 +7,7 @@
       kubernetes.core.k8s_cluster_info:
         api_key: "{{ bearer_token }}"
         host: "{{ host }}"
-        validate_certs: "{{ ssl_ca_cert }}"
+        validate_certs: "{{ verify_ssl }}"
       register: api_status
 
     - name: Show k8s version
