@@ -1,11 +1,27 @@
 ---
 ## k8s connection variables
-bearer_token: "{{ vault_bearer_token }}"
-host: "{{ vault_host }}"
-ssl_ca_cert: "{{ vault_ssl_ca_cert }}"
+bearer_token: "{{ vault_bearer_token | default() }}"
+host: "{{ vault_host | default() }}"
+ssl_ca_cert: "{{ vault_ssl_ca_cert | default() }}"
 
 ## Container Groups
 aap_cg_namespace: aap-containergroups
+aap_cg_sa_name: containergroup-sa
+aap_cg_role_name: containergroup-role
+aap_cg_role_rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: [""]
+    resources: ["pods/log"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: [""]
+    resources: ["pods/attach"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get", "create", "delete"]
+aap_cg_rolebinding_name:  containergroup-role-binding
 
 ## Controller
 orgs:  aap-multicloud

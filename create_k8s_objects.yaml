@@ -1,5 +1,5 @@
 ---
-- hosts: k8s
+- hosts: ocp
   connection: local
   gather_facts: false
   module_defaults:
@@ -8,7 +8,7 @@
       host: "{{ host }}"
       validate_certs: "{{ ssl_ca_cert }}"
   tasks:
-    - name: Create AAP Container Group namespace
+    - name: Create AAP Container Group NAMESPACE
       kubernetes.core.k8s:
         state: present
         definition:
@@ -20,15 +20,77 @@
             labels:
               containergroup-provider: "{{ k8s_flavor }}"
 
-    - name: Create AAP Container Group SA
+    - name: Create AAP Container Group SERVICE_ACCOUNT
       kubernetes.core.k8s:
         state: present
         definition:
-          name: "sa-cg-{{ aap_cg_namespace }}"
           api_version: v1
           kind: ServiceAccount
           metadata:
-            name: "sa-cg-{{ aap_cg_namespace }}"
+            name: "{{ aap_cg_sa_name }}"
             namespace: "{{ aap_cg_namespace }}"
             labels:
               containergroup-provider: "{{ k8s_flavor }}"
+      register: sa_cg_creation
+
+    - debug:
+        msg: "{{ sa_cg_creation }}"
+
+    - name: Get SA object
+      kubernetes.core.k8s_info:
+        api_version: v1
+        kind: ServiceAccount
+        name: "{{ aap_cg_sa_name }}"
+        namespace: "{{ aap_cg_namespace }}"
+      register: secret_sa_cg
+
+    - debug:
+        msg: "{{ secret_sa_cg }}"
+
+    - name: Create AAP Container Group ROLE
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          kind: Role
+          apiVersion: rbac.authorization.k8s.io/v1
+          metadata:
+            name: "{{ aap_cg_role_name }}"
+            namespace: "{{ aap_cg_namespace }}"
+            labels:
+              containergroup-provider: "{{ k8s_flavor }}"
+          rules: "{{ aap_cg_role_rules }}"
+
+    - name: Create AAP Container Group ROLEBINDING
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          kind: RoleBinding
+          apiVersion: rbac.authorization.k8s.io/v1
+          metadata:
+            name: "{{ aap_cg_rolebinding_name }}"
+            namespace: "{{ aap_cg_namespace }}"
+            labels:
+              containergroup-provider: "{{ k8s_flavor }}"
+          subjects:
+          - kind: ServiceAccount
+            name: "{{ aap_cg_sa_name }}"
+            namespace: "{{ aap_cg_namespace }}"
+          roleRef:
+            kind: Role
+            name: "{{ aap_cg_role_name }}"
+            apiGroup: rbac.authorization.k8s.io
+#
+#    - kubernetes.core.k8s_info:
+#      register: output
+#
+#    - debug:
+#        msg: "{{ output.apis.v1 }}"
+
+    - name: Get a cert from an https port
+      community.crypto.get_certificate:
+        host: "www.google.com"
+        port: 443
+      delegate_to: localhost
+      run_once: true
+      register: cert
+...
