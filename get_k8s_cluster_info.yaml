@@ -1,5 +1,5 @@
 ---
-- hosts: "{{ k8s_flavor }}"
+- hosts: all
   connection: local
   gather_facts: false
   tasks:
