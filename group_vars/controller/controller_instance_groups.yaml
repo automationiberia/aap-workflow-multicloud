@@ -1,6 +1,6 @@
 ---
 controller_instance_groups:
-  - name: "remote-dc"
+  - name: "VM_ON_PREM"
     validate_certs: false
     is_container_group: false
     instances:

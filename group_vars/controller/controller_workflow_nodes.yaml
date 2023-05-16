@@ -10,4 +10,9 @@ controller_workflow_nodes:
     unified_job_template: "{{ orgs }} Demo Job Template"
     inventory: "{{ orgs }} Demo Inventory AZU"
     credentials: "{{ orgs }} Demo Credential OCP"
+  - identifier: "VM_ON_PREM"
+    workflow_job_template: "{{ orgs }} Demo Workflow"
+    unified_job_template: "{{ orgs }} Demo Job Template"
+    inventory: "{{ orgs }} Demo Inventory VM_ON_PREM"
+    credentials: []
 ...
