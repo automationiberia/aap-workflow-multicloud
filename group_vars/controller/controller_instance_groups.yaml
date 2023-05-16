@@ -8,7 +8,7 @@ controller_instance_groups:
       apiVersion: v1
       kind: Pod
       metadata:
-        namespace: aws-containergroups
+        namespace: aap-containergroups-aws
       spec:
         serviceAccountName: sa-cg-aap-containergroups
         automountServiceAccountToken: false
@@ -33,7 +33,7 @@ controller_instance_groups:
       apiVersion: v1
       kind: Pod
       metadata:
-        namespace: azu-containergroups
+        namespace: aap-containergroups-azu
       spec:
         serviceAccountName: sa-cg-aap-containergroups
         automountServiceAccountToken: false
