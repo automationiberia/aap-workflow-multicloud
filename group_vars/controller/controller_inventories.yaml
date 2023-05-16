@@ -11,4 +11,9 @@ controller_inventories:
     organization: "{{ orgs }}"
     instance_groups:
       - AZU
+  - name: "{{ orgs }} Demo Inventory VM_ON_PREM"
+    description: "Demo Inventory VM_ON_PREM"
+    organization: "{{ orgs }}"
+    instance_groups:
+      - VM_ON_PREM
 ...
