@@ -16,6 +16,8 @@
 
     - name: Show k8s version
       debug:
-        msg: "{{ api_status.version.server }}"
+        msg:
+          - "{{ api_status.version.server }}"
+          - "{{  }}"
 
 

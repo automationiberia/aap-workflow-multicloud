@@ -1,5 +1,5 @@
 ---
-- hosts: eks
+- hosts: k8s
   connection: local
   gather_facts: false
   module_defaults:
@@ -12,7 +12,7 @@
       kubernetes.core.k8s:
         state: present
         definition:
-          name: "{{ aap_cg_namespace }}"
+          name: "{{ aap_cg_namespace }}{{ k8s_flavor }}"
           api_version: v1
           kind: Namespace
           metadata:
@@ -47,24 +47,6 @@
     - debug:
         msg: "{{ secret_sa_cg }}"
 
-
-    - name: Create AAP Container Group SECRET
-      kubernetes.core.k8s:
-        state: present
-        definition:
-          kind: Secret
-          metadata:
-            name: "{{ aap_cg_secret_name }}"
-            namespace: "{{ aap_cg_namespace }}"
-            annotations:
-              kubernetes.io/service-account.name: "{{ aap_cg_sa_name }}"
-            labels:
-              containergroup-provider: "{{ k8s_flavor }}"
-          type: kubernetes.io/service-account-token
-      when: "'eks' in group_names"
-
-
-
     - name: Create AAP Container Group ROLE
       kubernetes.core.k8s:
         state: present
@@ -73,7 +55,7 @@
           apiVersion: rbac.authorization.k8s.io/v1
           metadata:
             name: "{{ aap_cg_role_name }}"
-            namespace: "{{ aap_cg_namespace }}"
+            namespace: "{{ aap_cg_namespace }}{{ k8s_flavor }}"
             labels:
               containergroup-provider: "{{ k8s_flavor }}"
           rules: "{{ aap_cg_role_rules }}"
@@ -86,7 +68,7 @@
           apiVersion: rbac.authorization.k8s.io/v1
           metadata:
             name: "{{ aap_cg_rolebinding_name }}"
-            namespace: "{{ aap_cg_namespace }}"
+            namespace: "{{ aap_cg_namespace }}{{ k8s_flavor }}"
             labels:
               containergroup-provider: "{{ k8s_flavor }}"
           subjects:
@@ -104,4 +86,11 @@
 #    - debug:
 #        msg: "{{ output.apis.v1 }}"
 
+    - name: Get a cert from an https port
+      community.crypto.get_certificate:
+        host: "www.google.com"
+        port: 443
+      delegate_to: localhost
+      run_once: true
+      register: cert
 ...
