@@ -10,7 +10,7 @@ controller_instance_groups:
       metadata:
         namespace: aap-containergroups-aws
       spec:
-        serviceAccountName: aap-containergroups-aws
+        serviceAccountName: containergroup-sa
         automountServiceAccountToken: false
         containers:
           - image: pah.fx7rv.sandbox1478.opentlc.com/ee-supported-rhel8:latest
@@ -35,7 +35,7 @@ controller_instance_groups:
       metadata:
         namespace: aap-containergroups-azu
       spec:
-        serviceAccountName: aap-containergroups-azu
+        serviceAccountName: containergroup-sa
         automountServiceAccountToken: false
         containers:
           - image: pah.fx7rv.sandbox1478.opentlc.com/ee-supported-rhel8:latest
