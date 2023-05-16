@@ -1,8 +1,8 @@
 ---
 ## k8s connection variables
-bearer_token: "{{ vault_bearer_token | default() }}"
-host: "{{ vault_host | default() }}"
-ssl_ca_cert: "{{ vault_ssl_ca_cert | default() }}"
+bearer_token: "{{ vault_bearer_token | default(lookup('env','K8S_AUTH_API_KEY') }}"
+host: "{{ vault_host | default(lookup('env','K8S_AUTH_HOST') }}"
+ssl_ca_cert: "{{ vault_ssl_ca_cert | default(lookup('env','K8S_AUTH_VERIFY_SSL') }}"
 
 ## Container Groups
 aap_cg_namespace: aap-containergroups
