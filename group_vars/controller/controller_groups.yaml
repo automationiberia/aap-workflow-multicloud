@@ -1,0 +1,12 @@
+---
+controller_groups:
+  - name: AWS
+    inventory: "{{ orgs }} Demo Inventory AWS"
+    hosts:
+      - aws-instance-group
+
+  - name: AZU
+    inventory: "{{ orgs }} Demo Inventory AZU"
+    hosts:
+      - azu-instance-group
+...
