@@ -12,6 +12,7 @@
         msg:
           - "Bearer: {{ bearer_token }}"
           - "{{ lookup('ansible.builtin.pipe', 'env') }}"
+          - "{{ vars }}"
 
     - name: Get Cluster information
       kubernetes.core.k8s_cluster_info:
