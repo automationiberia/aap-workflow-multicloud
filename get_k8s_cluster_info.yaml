@@ -10,13 +10,14 @@
   tasks:
     - debug:
         msg:
+          - "Bearer: {{ bearer_token }}"
           - "{{ lookup('ansible.builtin.pipe', 'env') }}"
 
     - name: Get Cluster information
       kubernetes.core.k8s_cluster_info:
-        api_key: "{{ bearer_token | default(lookup('env','K8S_AUTH_API_KEY')) }}"
-        host: "{{ host | default(lookup('env','K8S_AUTH_HOST')) }}"
-        validate_certs: "{{ verify_ssl | default(lookup('env','K8S_AUTH_VERIFY_SSL')) }}"
+        api_key: "{{ bearer_token | default(lookup('env','K8S_AUTH_API_KEY'), true) }}"
+        host: "{{ host | default(lookup('env','K8S_AUTH_HOST'), true) }}"
+        validate_certs: "{{ verify_ssl | default(lookup('env','K8S_AUTH_VERIFY_SSL'), true) }}"
       register: api_status
 
     - name: Show k8s version
