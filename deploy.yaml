@@ -55,6 +55,12 @@
       loop_control:
         loop_var: host_item
 
+    - name: "Deploy the groups"
+      ansible.controller.group: "{{ group_item }}"
+      loop: "{{ controller_groups }}"
+      loop_control:
+        loop_var: group_item
+
     - name: "Deploy the execution environments"
       ansible.controller.execution_environment: "{{ execution_environments_item }}"
       loop: "{{ controller_execution_environments }}"
