@@ -2,7 +2,7 @@
 controller_instance_groups:
   - name: "AWS"
     validate_certs: false
-    credential: "{{ orgs }} Demo Credential AWS"
+    credential: "{{ orgs }} Demo Credential OCP"
     is_container_group: true
     pod_spec_override: |
       apiVersion: v1
@@ -27,7 +27,7 @@ controller_instance_groups:
 
   - name: "AZU"
     validate_certs: false
-    credential: "{{ orgs }} Demo Credential AZU"
+    credential: "{{ orgs }} Demo Credential OCP"
     is_container_group: true
     pod_spec_override: |
       apiVersion: v1

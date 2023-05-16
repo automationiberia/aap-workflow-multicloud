@@ -37,17 +37,17 @@
       loop_control:
         loop_var: project_item
 
-    - name: "Deploy the inventories"
-      ansible.controller.inventory: "{{ inventory_item }}"
-      loop: "{{ controller_inventories }}"
-      loop_control:
-        loop_var: inventory_item
-
     - name: "Deploy the instance groups"
       ansible.controller.instance_group: "{{ instance_group_item }}"
       loop: "{{ controller_instance_groups }}"
       loop_control:
         loop_var: instance_group_item
+
+    - name: "Deploy the inventories"
+      ansible.controller.inventory: "{{ inventory_item }}"
+      loop: "{{ controller_inventories }}"
+      loop_control:
+        loop_var: inventory_item
 
     - name: "Deploy the hosts"
       ansible.controller.host: "{{ host_item }}"

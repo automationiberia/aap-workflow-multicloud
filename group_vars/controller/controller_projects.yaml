@@ -5,7 +5,7 @@ controller_projects:
     organization: "{{ orgs }}"
     scm_type: git
     scm_url: "https://github.com/automationiberia/aap-workflow-multicloud.git"
-    scm_branch: "main"
+    scm_branch: "demo"
     scm_clean: false
     scm_delete_on_update: false
     scm_update_on_launch: false

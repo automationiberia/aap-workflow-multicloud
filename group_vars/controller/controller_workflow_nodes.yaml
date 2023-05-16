@@ -4,10 +4,10 @@ controller_workflow_nodes:
     workflow_job_template: "{{ orgs }} Demo Workflow"
     unified_job_template: "{{ orgs }} Demo Job Template"
     inventory: "{{ orgs }} Demo Inventory AWS"
-    credentials: "{{ orgs }} Demo Credential AWS"
+    credentials: "{{ orgs }} Demo Credential OCP"
   - identifier: "K8S_AZU"
     workflow_job_template: "{{ orgs }} Demo Workflow"
     unified_job_template: "{{ orgs }} Demo Job Template"
     inventory: "{{ orgs }} Demo Inventory AZU"
-    credentials: "{{ orgs }} Demo Credential AZU"
+    credentials: "{{ orgs }} Demo Credential OCP"
 ...
