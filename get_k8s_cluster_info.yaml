@@ -1,5 +1,5 @@
 ---
-- hosts: "{{ k8s_flavor }}"
+- hosts: "{{ k8s_flavor } | default ('all') }}"
   connection: local
   gather_facts: true
   module_defaults:
