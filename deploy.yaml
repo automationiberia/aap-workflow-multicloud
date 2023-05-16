@@ -18,70 +18,94 @@
       loop: "{{ controller_organizations }}"
       loop_control:
         loop_var: organization_item
+      tags:
+        - organizations
 
     - name: "Deploy the credentials"
       ansible.controller.credential: "{{ credential_item }}"
       loop: "{{ controller_credentials }}"
       loop_control:
         loop_var: credential_item
+      tags:
+        - credentials
 
     - name: "Add galaxy credentials to organizations"
       ansible.controller.organization: "{{ organization_item }}"
       loop: "{{ controller_organizations }}"
       loop_control:
         loop_var: organization_item
+      tags:
+        - organizations
+        - credentials
 
     - name: "Deploy the projects"
       ansible.controller.project: "{{ project_item }}"
       loop: "{{ controller_projects }}"
       loop_control:
         loop_var: project_item
+      tags:
+        - projects
 
     - name: "Deploy the instance groups"
       ansible.controller.instance_group: "{{ instance_group_item }}"
       loop: "{{ controller_instance_groups }}"
       loop_control:
         loop_var: instance_group_item
+      tags:
+        - instance_groups
 
     - name: "Deploy the inventories"
       ansible.controller.inventory: "{{ inventory_item }}"
       loop: "{{ controller_inventories }}"
       loop_control:
         loop_var: inventory_item
+      tags:
+        - inventories
 
     - name: "Deploy the hosts"
       ansible.controller.host: "{{ host_item }}"
       loop: "{{ controller_hosts }}"
       loop_control:
         loop_var: host_item
+      tags:
+        - hosts
 
     - name: "Deploy the groups"
       ansible.controller.group: "{{ group_item }}"
       loop: "{{ controller_groups }}"
       loop_control:
         loop_var: group_item
+      tags:
+        - groups
 
     - name: "Deploy the execution environments"
       ansible.controller.execution_environment: "{{ execution_environments_item }}"
       loop: "{{ controller_execution_environments }}"
       loop_control:
         loop_var: execution_environments_item
+      tags: execution_environments
 
     - name: "Deploy the job templates"
       ansible.controller.job_template: "{{ job_template_item }}"
       loop: "{{ controller_templates }}"
       loop_control:
         loop_var: job_template_item
+      tags:
+        - job_templates
 
     - name: "Deploy the workflows"
       ansible.controller.workflow_job_template: "{{ workflow_item }}"
       loop: "{{ controller_workflows }}"
       loop_control:
         loop_var: workflow_item
+      tags:
+        - workflow_job_templates
 
     - name: "Deploy the workflow nodes"
       ansible.controller.workflow_job_template_node: "{{ node_item }}"
       loop: "{{ controller_workflow_nodes }}"
       loop_control:
         loop_var: node_item
+      tags:
+        - workflow_job_templates
 ...
