@@ -1,19 +1,19 @@
 ---
 controller_instance_groups:
-  - name: "OCP"
+  - name: "AWS"
     validate_certs: false
-    credential: "{{ orgs }} Demo Credential OCP"
+    credential: "{{ orgs }} Demo Credential AWS"
     is_container_group: true
     pod_spec_override: |
       apiVersion: v1
       kind: Pod
       metadata:
-        namespace: aap-containergroups
+        namespace: aws-containergroups
       spec:
         serviceAccountName: sa-cg-aap-containergroups
         automountServiceAccountToken: false
         containers:
-          - image: pah.hlwjb.sandbox691.opentlc.com/ee-supported-rhel8:latest
+          - image: pah.fx7rv.sandbox1478.opentlc.com/ee-supported-rhel8:latest
             name: worker
             args:
               - ansible-runner
@@ -25,20 +25,20 @@ controller_instance_groups:
                 memory: 100Mi
     instances: []
 
-  - name: "EKS"
+  - name: "AZU"
     validate_certs: false
-    credential: "{{ orgs }} Demo Credential EKS"
+    credential: "{{ orgs }} Demo Credential AZU"
     is_container_group: true
     pod_spec_override: |
       apiVersion: v1
       kind: Pod
       metadata:
-        namespace: aap-containergroups
+        namespace: azu-containergroups
       spec:
         serviceAccountName: sa-cg-aap-containergroups
         automountServiceAccountToken: false
         containers:
-          - image: pah.hlwjb.sandbox691.opentlc.com/ee-supported-rhel8:latest
+          - image: pah.fx7rv.sandbox1478.opentlc.com/ee-supported-rhel8:latest
             name: worker
             args:
               - ansible-runner
@@ -47,6 +47,6 @@ controller_instance_groups:
             resources:
               requests:
                 cpu: 250m
-                memory: 100Mi "
+                memory: 100Mi
     instances: []
 ...

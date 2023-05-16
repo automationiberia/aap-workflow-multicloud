@@ -1,10 +1,10 @@
 ---
 controller_hosts:
-  - name: ocp-instance-group
+  - name: aws-instance-group
     description: localhost
-    inventory: "{{ orgs }} Demo Inventory OCP"
+    inventory: "{{ orgs }} Demo Inventory AWS"
 
-  - name: eks-instance-group
+  - name: azu-instance-group
     description: localhost
-    inventory: "{{ orgs }} Demo Inventory EKS"
+    inventory: "{{ orgs }} Demo Inventory AZU"
 ...

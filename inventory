@@ -1,13 +1,12 @@
 [controller]
 lb-ctrl-dev.lab.example.com
 
-[ocp]
-ocp-cluster1
+[aws]
+aws-cluster1
 
-[eks]
-eks-cluster1
+[azu]
+azu-cluster1
 
 [k8s:children]
-ocp
-eks
-
+aws
+azu
