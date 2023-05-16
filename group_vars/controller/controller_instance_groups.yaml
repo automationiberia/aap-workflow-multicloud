@@ -1,5 +1,11 @@
 ---
 controller_instance_groups:
+  - name: "remote-dc"
+    validate_certs: false
+    is_container_group: false
+    instances:
+      - exec1.fx7rv.internal
+
   - name: "AWS"
     validate_certs: false
     credential: "{{ orgs }} Demo Credential OCP"
