@@ -2,6 +2,11 @@
 - hosts: "{{ k8s_flavor }}"
   connection: local
   gather_facts: false
+  module_defaults:
+    group/k8s:
+      api_key: "{{ bearer_token }}"
+      host: "{{ host }}"
+      validate_certs: "{{ ssl_ca_cert }}"
   tasks:
     - debug:
         msg:
