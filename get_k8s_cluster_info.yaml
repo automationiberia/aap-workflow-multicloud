@@ -18,6 +18,5 @@
       debug:
         msg:
           - "{{ api_status.version.server }}"
-          - "{{  }}"
-
-
+          - "{{ k8s_flavor }}"
+...
