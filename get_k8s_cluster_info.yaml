@@ -21,7 +21,7 @@
         validate_certs: "{{ verify_ssl | default(lookup('env','K8S_AUTH_VERIFY_SSL'), true) }}"
       register: api_status
       vars:
-        is_kubernetes: "{{ lookup('pipe', 'env | grep KUBERNETES_ | wc -l') }}"
+        is_kubernetes: "{{ lookup('pipe', 'env | grep KUBERNETES_ | wc -l') | int }}"
       when: is_kubernetes > 0
 
     - name: Show k8s version
