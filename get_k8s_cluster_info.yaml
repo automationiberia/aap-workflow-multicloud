@@ -28,7 +28,7 @@
       debug:
         msg:
           - "API Version: {{ api_status.version.server | default('not in Kubernetes') }}"
-          - "{{ k8s_flavor }}"
+          - "{{ k8s_flavor | default('not in Kubernetes') }}"
           - "is_kubernetes: {{ lookup('pipe', 'env | grep KUBERNETES_ | wc -l') }}"
           - "hostname: {{ ansible_facts.hostname }}"
 ...
