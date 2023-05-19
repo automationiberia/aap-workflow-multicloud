@@ -20,12 +20,15 @@
         host: "{{ host | default(lookup('env','K8S_AUTH_HOST'), true) }}"
         validate_certs: "{{ verify_ssl | default(lookup('env','K8S_AUTH_VERIFY_SSL'), true) }}"
       register: api_status
-      when: ansible_facts.virtualization_type is match('container')
+      vars:
+        is_kubernetes: "{{ lookup('pipe', 'env | grep KUBERNETES_ | wc -l') }}"
+      when: is_kubernetes > 0
 
     - name: Show k8s version
       debug:
         msg:
           - "API Version: {{ api_status.version.server | default('not in Kubernetes') }}"
           - "{{ k8s_flavor }}"
-          - "Virtualization Type: {{ ansible_facts.virtualization_type }}"
+          - "is_kubernetes: {{ lookup('pipe', 'env | grep KUBERNETES_ | wc -l') }}"
+          - "hostname: {{ ansible_facts.hostname }}"
 ...
