@@ -4,7 +4,7 @@ controller_instance_groups:
     validate_certs: false
     is_container_group: false
     instances:
-      - exec1.fx7rv.internal
+      - exec1.dqqhp.internal
 
   - name: "AWS"
     validate_certs: false
@@ -19,7 +19,7 @@ controller_instance_groups:
         serviceAccountName: containergroup-sa
         automountServiceAccountToken: false
         containers:
-          - image: pah.fx7rv.sandbox1478.opentlc.com/ee-supported-rhel8:latest
+          - image: pah.dqqhp.sandbox1289.opentlc.com/ee-supported-rhel8:latest
             name: worker
             args:
               - ansible-runner
@@ -44,7 +44,7 @@ controller_instance_groups:
         serviceAccountName: containergroup-sa
         automountServiceAccountToken: false
         containers:
-          - image: pah.fx7rv.sandbox1478.opentlc.com/ee-supported-rhel8:latest
+          - image: pah.dqqhp.sandbox1289.opentlc.com/ee-supported-rhel8:latest
             name: worker
             args:
               - ansible-runner
