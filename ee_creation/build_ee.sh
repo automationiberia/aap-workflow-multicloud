@@ -14,9 +14,9 @@ if [ $# -ne 1 ]; then
   exit 1
 fi
 
-AAH=pah.fx7rv.sandbox1478.opentlc.com
+AAH=pah.dqqhp.sandbox1289.opentlc.com
 
 ansible-builder build --tag ${AAH}/${1}
-podman login ${AAH} --username admin --password oBlpGgPgSN2o --tls-verify=false
+podman login ${AAH} --username api --password  redhat0000 --tls-verify=false
 podman push ${AAH}/${1} --tls-verify=false
 
