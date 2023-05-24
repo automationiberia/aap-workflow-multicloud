@@ -33,7 +33,7 @@
               containergroup-provider: "{{ k8s_flavor }}"
       register: sa_cg_creation
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ sa_cg_creation }}"
 
     - name: Get SA object
@@ -44,7 +44,7 @@
         namespace: "{{ aap_cg_namespace }}-{{ k8s_flavor }}"
       register: secret_sa_cg
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ secret_sa_cg }}"
 
     - name: Create AAP Container Group ROLE

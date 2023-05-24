@@ -8,7 +8,7 @@
       host: "{{ host }}"
       validate_certs: "{{ ssl_ca_cert }}"
   tasks:
-    - debug:
+    - ansible.builtin.debug:
         msg:
           - "Bearer: {{ bearer_token }}"
           - "{{ lookup('ansible.builtin.pipe', 'env') }}"
@@ -25,7 +25,7 @@
       when: (is_kubernetes | int ) > 0
 
     - name: Show k8s version
-      debug:
+      ansible.builtin.debug:
         msg:
           - "API Version: {{ api_status.version.server | default('not in Kubernetes') }}"
           - "{{ k8s_flavor | default('not in Kubernetes') }}"
