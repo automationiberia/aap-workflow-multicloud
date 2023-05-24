@@ -4,9 +4,13 @@ controller_groups:
     inventory: "{{ orgs }} Demo Inventory AWS"
     hosts:
       - aws-instance-group
+    variables:
+      k8s_flavor: AWS
 
   - name: AZU
     inventory: "{{ orgs }} Demo Inventory AZU"
     hosts:
       - azu-instance-group
+    variables:
+      k8s_flavor: AZU
 ...
